@@ -70,8 +70,32 @@ class Receptionist extends Employee{
         displaydetails();
         System.out.println("Table Number:"+t_number);
     }
-
 }
+
+
+    class Patient{
+        String p_name;
+        int p_age;
+        String p_gender;
+        String p_disease;
+        Patient(String name,int age,String gender,String disease){
+            p_name=name;
+            p_age=age;
+            p_gender=gender;
+            p_disease=disease;
+
+
+        }
+       void display(){
+        System.out.println("Patient Details");
+        System.out.println("Name:"+p_name);
+        System.out.println("Age:"+p_age);
+        System.out.println("Gender"+p_gender);
+        System.out.println("Disease"+p_disease);
+       }
+    }
+
+
 public class Hotelmanagement {
     public static void main(String[] args) {
         Scanner s=new Scanner(System.in);
@@ -79,6 +103,7 @@ public class Hotelmanagement {
         System.out.println("1.Doctor");
         System.out.println("2.Nurse");
         System.out.println("3.Receptionist");
+        System.out.println("4.Patient");
         int n=s.nextInt();
         if(n==1){
 
@@ -118,6 +143,21 @@ public class Hotelmanagement {
 
             Receptionist receptionist=new Receptionist(r_name,r_id,r_tableno);
             receptionist.display();
+        }
+        else if(n==4){
+            System.out.println("Enter Patient Name:");
+            String p_name=s.next();
+            System.out.println("Enter age:");
+            int p_age=s.nextInt();
+            s.nextLine();
+            System.out.println("Enter Gender:");
+            String p_gender=s.next();
+            System.out.println("Enter Disease:");
+            String p_disease=s.next();
+
+            Patient patient=new Patient(p_name,p_age,p_gender,p_disease);
+            patient.display();
+
         }
         else{
             System.out.println("Please Enter correct Number");
