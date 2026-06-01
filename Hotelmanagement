@@ -1,0 +1,127 @@
+import java.util.Scanner;
+
+class Employee{
+    String e_name;
+    int e_id;
+    Employee(String name,int id){
+        e_name=name;
+        e_id=id;
+
+
+    }
+    void displaydetails(){
+        System.out.println("Name:"+e_name);
+        System.out.println("ID:"+e_id);
+
+    }
+
+
+}
+class Doctor extends Employee{
+    String d_specialization;
+   
+    Doctor(String name,int id,String specialization){
+        super(name, id);
+        this.d_specialization = specialization;
+    }
+
+
+    void display(){
+        System.out.println("Doctor Details");
+        displaydetails();
+        System.out.println("Specialization:"+d_specialization);
+
+    }
+
+
+}
+    class Nurse extends Employee{
+
+    String shift;
+   
+    Nurse(String name,int id,String shift){
+        super(name, id);
+        this.shift = shift;
+
+    }
+
+
+
+
+    void display(){
+        System.out.println("Nurse Details");
+        displaydetails();
+        System.out.println("Shift Number:"+shift);
+
+    }
+
+}
+class Receptionist extends Employee{
+    int t_number;
+   
+    Receptionist(String name,int id,int t_number){
+        super(name, id);
+        this.t_number = t_number;
+
+    }
+
+    void display(){
+        System.out.println("Receptionist Details");
+        displaydetails();
+        System.out.println("Table Number:"+t_number);
+    }
+
+}
+public class Hotelmanagement {
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        System.out.println("Enter the category of the Employee that you want to enter the details");
+        System.out.println("1.Doctor");
+        System.out.println("2.Nurse");
+        System.out.println("3.Receptionist");
+        int n=s.nextInt();
+        if(n==1){
+
+            System.out.println("Enter Doctor Name:");
+            String d_name=s.next();
+            System.out.println("Enter ID of the Doctor:");
+            int d_id=s.nextInt();
+            s.nextLine();
+            System.out.println("Enter specialization :");
+            String d_specialization=s.nextLine();
+
+            Doctor doctor=new Doctor(d_name,d_id,d_specialization);
+            doctor.display();
+        }
+        else if(n==2){
+             System.out.println("Enter Nurse Name:");
+            String n_name=s.next();
+            System.out.println("Enter ID of the Nurse:");
+            int n_id=s.nextInt();
+            s.nextLine();
+            System.out.println("Enter shift :");
+            String n_shift=s.nextLine();
+
+            Nurse nurse=new Nurse(n_name,n_id,n_shift);
+            nurse.display();
+
+        }
+        else if(n==3){
+             System.out.println("Enter Receptionist Name:");
+            String r_name=s.next();
+            System.out.println("Enter ID of the Receptionist:");
+            int r_id=s.nextInt();
+            s.nextLine();
+            System.out.println("Enter Table Number :");
+            int r_tableno=s.nextInt();
+            s.nextLine();
+
+            Receptionist receptionist=new Receptionist(r_name,r_id,r_tableno);
+            receptionist.display();
+        }
+        else{
+            System.out.println("Please Enter correct Number");
+        }
+        
+    }
+}
