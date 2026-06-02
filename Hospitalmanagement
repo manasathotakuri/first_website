@@ -96,7 +96,7 @@ class Receptionist extends Employee{
     }
 
 
-public class Hotelmanagement {
+public class Hospitalmanagement {
     public static void main(String[] args) {
         Scanner s=new Scanner(System.in);
         System.out.println("Enter the category of the Employee that you want to enter the details");
