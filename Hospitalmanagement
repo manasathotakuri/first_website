@@ -1,4 +1,6 @@
+import java.util.HashMap;
 import java.util.Scanner;
+
 
 class Employee{
     String e_name;
@@ -6,6 +8,7 @@ class Employee{
     Employee(String name,int id){
         e_name=name;
         e_id=id;
+        
 
 
     }
@@ -74,32 +77,51 @@ class Receptionist extends Employee{
 
 
     class Patient{
-        String p_name;
-        int p_age;
-        String p_gender;
-        String p_disease;
-        Patient(String name,int age,String gender,String disease){
-            p_name=name;
-            p_age=age;
-            p_gender=gender;
-            p_disease=disease;
-
+        static HashMap<Integer,String> patient_map=new HashMap<>();
+       
+    }
+    class Enter extends Patient{
+        String name;
+        int id;
+        Enter(int id,String name){
+            this.name=name;
+            this.id=id;
+            patient_map.put(id,name);
 
         }
-       void display(){
-        System.out.println("Patient Details");
-        System.out.println("Name:"+p_name);
-        System.out.println("Age:"+p_age);
-        System.out.println("Gender"+p_gender);
-        System.out.println("Disease"+p_disease);
-       }
+
+    }
+    class Search extends Patient{
+        String name;
+        Search(int id){
+        name=patient_map.get(id);
+        if(name!=null){
+   System.out.println("Name:"+name);
+    }
+    else{
+        System.out.println("patient not found for the id you have entered");
     }
 
+        }
+
+    }
+    class Print extends Patient{
+
+        Print(){
+            for(Integer id:patient_map.keySet()){
+               
+                System.out.println("ID:"+id+"  "+"Name:"+patient_map.get(id));
+                
+               
+            }
+        }
+
+    }
 
 public class Hospitalmanagement {
     public static void main(String[] args) {
         Scanner s=new Scanner(System.in);
-        System.out.println("Enter the category of the Employee that you want to enter the details");
+        System.out.println("Enter the category of the person");
         System.out.println("1.Doctor");
         System.out.println("2.Nurse");
         System.out.println("3.Receptionist");
@@ -145,23 +167,52 @@ public class Hospitalmanagement {
             receptionist.display();
         }
         else if(n==4){
-            System.out.println("Enter Patient Name:");
-            String p_name=s.next();
-            System.out.println("Enter age:");
-            int p_age=s.nextInt();
+            while(true){
+            System.out.println("Enter the operations");
+            System.out.println("1.Enter patient details");
+            System.out.println("2.search patient details");
+            System.out.println("3.To print list of patients");
+             System.out.println("4.Exit");
+           
+            int operation_on_patientdetails=s.nextInt();
             s.nextLine();
-            System.out.println("Enter Gender:");
-            String p_gender=s.next();
-            System.out.println("Enter Disease:");
-            String p_disease=s.next();
-
-            Patient patient=new Patient(p_name,p_age,p_gender,p_disease);
-            patient.display();
+        if(operation_on_patientdetails==1)
+        {
+            System.out.println("Enter patient details");
+            System.out.println("Name:");
+            String name=s.next();
+            System.out.println("Patient ID:");
+            int patient_id=s.nextInt();
+            s.nextLine();
+            Enter enter=new Enter(patient_id,name);
 
         }
-        else{
+        else if(operation_on_patientdetails==2){
+            System.out.println("Enter ID of the patient:");
+            int id=s.nextInt();
+            s.nextLine();
+            Search search=new Search(id);
+
+        }
+        else if(operation_on_patientdetails==3){
+            Print print=new Print();
+
+        }
+        else if(operation_on_patientdetails==4){
+            break;
+        }
+            else{
+                System.out.println("Enter correct operation");
+            }
+
+           
+        }
+    }
+        else
+        {
             System.out.println("Please Enter correct Number");
         }
+
         
     }
 }
